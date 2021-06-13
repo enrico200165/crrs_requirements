@@ -1,12 +1,6 @@
 import os.path
 
-import readability
-import textstat
-
 import crrs_reqs_global_defs as g
-
-from req_entry_word_table_class import ReqEntryWordTable
-
 import build_req_df_bare as bld
 
 
@@ -23,9 +17,8 @@ import build_req_df_bare as bld
 """
 
 
-if __name__ == "__main__":
-    filepath = os.path.join(g.path, g.filename_shk)
-    df = bld.reqs_from_word_file(filepath)
-    print(df.columns)
-    print(df[g.status_key][0:5])
-    print(df[g.status_key].value_counts())
+filepath = os.path.join(g.path, g.filename_shk)
+df = bld.reqs_from_word_file(filepath)
+print(df.columns)
+print(df[g.status_key][0:5])
+print(df[g.status_key].value_counts())
