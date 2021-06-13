@@ -17,8 +17,9 @@ import build_req_df_bare as bld
 """
 
 
-filepath = os.path.join(g.path, g.filename_shk)
+filepath = os.path.join(g.path, g.filename_a6)
 df = bld.reqs_from_word_file(filepath)
 print(df.columns)
-print(df[g.status_key][0:5])
-print(df[g.status_key].value_counts())
+#print(df[g.status_key][0:5])
+#print(df[g.status_key].value_counts())
+print("\n", df[g.target_subtarget_key].value_counts())

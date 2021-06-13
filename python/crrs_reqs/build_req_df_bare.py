@@ -20,7 +20,8 @@ def ReqEntry_from_WordReqEntry(word_req):
         word_req.description,
         word_req.status,
         word_req.source,
-        word_req.rationale
+        word_req.rationale,
+        word_req.target_subtarget
     )
     return req
 
@@ -63,8 +64,9 @@ def reqs_from_word_file(filepath):
     for i, t in enumerate(doc.tables):
         if not is_word_table_req_table(t):
             continue
-        re = ReqEntry_from_WordReqEntry(ReqEntryWordTable(t))
-
+        wt = ReqEntryWordTable(t)
+        # print(wt.col1_to_string())
+        re = ReqEntry_from_WordReqEntry(wt)
         reqs_l.append(re)
 
     df = pd.DataFrame(columns=g.col_names)

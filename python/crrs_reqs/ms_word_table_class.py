@@ -19,6 +19,7 @@ class MSWordTable:
         return self._table.rows[0].cells[0].paragraphs[0].text
 
     def row_left_cell_equals(self, col_name):
+        col_name = col_name.replace(" ", "").lower()
         if self._table is None:
             return None
         if self._table.rows is None:
@@ -28,7 +29,7 @@ class MSWordTable:
             if leftmost is None:
                 return None
             for par in leftmost.paragraphs:
-                text = par.text
+                text = par.text.replace(" ", "").lower()
                 if col_name == text:
                     return row
         return None
@@ -48,10 +49,22 @@ class MSWordTable:
     def get_pars_cell_row_id(self, row_id, cell_nr, par_nr):
         cell = self.get_cell_row_id(row_id, cell_nr)
         if cell is None:
+            cell = self.get_cell_row_id(row_id, cell_nr) # to debug
             return None
         pars = []
         for par in cell.paragraphs:
             pars.append(par.text)
         return pars
 
+    def col1_to_string(self):
+        cells = []
+        for row in self._table.rows:
+            leftmost = row.cells[0]
+            pars = []
+            for par in leftmost.paragraphs:
+                pars.append(par.text)
+            cell_text = "\n".join(pars)
+            cells.append(cell_text)
+        ret = ">> "+"\n>> ".join(cells)
+        return ret
 

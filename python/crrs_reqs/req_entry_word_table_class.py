@@ -12,6 +12,7 @@ class ReqEntryWordTable(MSWordTable):
         if not isinstance(table, docx.table.Table):
             exit(2)
         super().__init__(table)
+        self._target_subtarget = g.not_set
 
     def get_name_value(self, name):
         ret_text = self.get_tex_cell_row_id(name, 1, 0)
@@ -73,3 +74,11 @@ class ReqEntryWordTable(MSWordTable):
     def rationale(self):
         return self.rationale2[1]
 
+    @property
+    def target_subtarget2(self):
+        ret = self.get_name_value(g.target_subtarget_val)
+        return ret
+
+    @property
+    def target_subtarget(self):
+        return self.target_subtarget2[1]

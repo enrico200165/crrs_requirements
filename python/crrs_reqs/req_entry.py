@@ -5,7 +5,7 @@ class ReqEntry:
     a crrs requirement entry
     only the main fields likely to be necessary (4-5 omitted)
     """
-    def __init__(self, rp_spec_id, req_id, name, description, status, source, rationale):
+    def __init__(self, rp_spec_id, req_id, name, description, status, source, rationale, target_subtarget):
         self._rp_spec_ID = rp_spec_id
         self._req_ID = req_id
         self._name = name
@@ -13,10 +13,11 @@ class ReqEntry:
         self._status = status
         self._source = source
         self._rationale = rationale
+        self._target_subtarget = target_subtarget
 
     def values_list(self):
         return [self._rp_spec_ID, self._req_ID, self._name, self._description, self._status,
-                self._source, self._rationale]
+                self._source, self._rationale, self._target_subtarget]
 
     @property
     def rp_spec_id(self): return self._rp_spec_ID
@@ -39,3 +40,5 @@ class ReqEntry:
     @property
     def rationale(self): return self._rationale
 
+    @property
+    def target_subtarget(self): return self._target_subtarget
